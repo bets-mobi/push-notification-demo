@@ -38,13 +38,13 @@ function subscribeUser(swReg) {
     });
 }
 
-function sendSubscriptionToServer(endpoint, p256dh, auth) {
-    fetch('/api/save-subscription', {
+function sendSubscriptionToServer(subscription) {
+    return fetch('http://localhost:3000/api/save-subscription', {
         method: 'POST',
-        body: JSON.stringify({ endpoint, p256dh, auth }),
         headers: {
             'Content-Type': 'application/json'
-        }
+        },
+        body: JSON.stringify({ subscription })
     })
     .then(response => {
         if (!response.ok) {
@@ -53,12 +53,13 @@ function sendSubscriptionToServer(endpoint, p256dh, auth) {
         return response.json();
     })
     .then(data => {
-        console.log('Subscription saved to server:', data);
+        console.log('Subscription saved:', data);
     })
     .catch(error => {
-        console.error('Error saving subscription to server:', error);
+        console.error('Error saving subscription:', error);
     });
 }
+
 
 function urlB64ToUint8Array(base64String) {
     const padding = '='.repeat((4 - base64String.length % 4) % 4);
