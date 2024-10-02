@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popup on Close</title>
+    <script>
+        window.addEventListener("beforeunload", function (event) {
+            const confirmationMessage = "Do you really want to miss out on all the fun?";
+            event.returnValue = confirmationMessage; // For most browsers
+            return confirmationMessage; // For some browsers
+        });
+    </script>
+</head>
+<body>
+    <h1>Welcome to the Fun Page!</h1>
+    <p>Enjoy your stay!</p>
+</body>
+</html>
