@@ -6,14 +6,17 @@
     <title>Popup on Close</title>
     <script>
         window.addEventListener("beforeunload", function (event) {
+            // Set a custom message
             const confirmationMessage = "Do you really want to miss out on all the fun?";
-            event.returnValue = confirmationMessage; // For most browsers
-            return confirmationMessage; // For some browsers
+            // Older browsers may require `returnValue` to be set
+            event.returnValue = confirmationMessage; 
+            return confirmationMessage; // Modern browsers will show a generic message
         });
     </script>
 </head>
 <body>
     <h1>Welcome to the Fun Page!</h1>
     <p>Enjoy your stay!</p>
+    <p>Try to close this tab or navigate away!</p>
 </body>
 </html>
